@@ -1,0 +1,107 @@
+.sidebar {
+  box-sizing: border-box;
+  position: relative;
+  width: 340px;
+  height: 100%;
+  border-right: 1px solid #d4d9e4;
+  padding: 40px;
+  background: #f4f6f9;
+
+  &-dropdown {
+    position: absolute;
+    right: -20px;
+    top: 90px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border-width: 1px;
+    padding: 8px;
+    gap: 12px;
+    background: #F4F6F9;
+  }
+}
+
+.header {
+  display: flex;
+  gap: 16px;
+
+  &-name {
+    font-family: "Gilroy";
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 48px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    margin: 0;
+  }
+
+  &-add {
+    font-family: "Inter Tight";
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    color: #006bff;
+    margin: 0;
+  }
+}
+
+.navigation {
+  width: 260;
+  height: 56;
+  padding: 16px;
+  gap: 12px;
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-tag {
+    font-family: "Inter Tight";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: #a3a3a3;
+  }
+
+  &-dropdown {
+    border: none;
+    background: none;
+  }
+
+  &-node {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 260;
+    height: 48;
+    gap: 12px;
+    border-radius: 16px;
+    padding-top: 12px;
+    padding-right: 16px;
+    padding-bottom: 12px;
+
+    &:hover {
+      background: #fff;
+    }
+
+    &-text {
+      text-decoration: none;
+      color: #222222;
+      font-family: "Inter Tight";
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0px;
+      vertical-align: middle;
+    }
+  }
+}
+
+.about {
+  padding-left: 16px;
+  margin-top: 160px;
+}
