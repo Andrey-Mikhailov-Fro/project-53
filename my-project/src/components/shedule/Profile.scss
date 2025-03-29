@@ -1,0 +1,94 @@
+.profile {
+  box-sizing: border-box;
+  padding: 68px 0 0 40px;
+
+  &-exit {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    text-align: center;
+    vertical-align: middle;
+    color: #a3a3a3;
+  }
+
+  &-current {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    text-align: center;
+    vertical-align: middle;
+    color: #006BFF;
+  }
+
+  &-table {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 50%;
+  }
+
+  &-field {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+  }
+
+  &-field > label {
+    width: 30%;
+    font-family: "Inter Tight";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+  }
+
+  &-input {
+    width: 60%;
+    max-width: 496px;
+    border: none;
+    border-radius: 16px;
+    padding: 16px;
+    background: #f4f6f9;
+  }
+
+  &-select {
+    appearance: none;
+    width: 70%;
+    max-width: 496px;
+    border: none;
+    border-radius: 16px;
+    padding: 16px;
+    background: #f4f6f9;
+    background-image: url("../../../public/dropdownDown.svg");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+
+    &:invalid {
+      opacity: 0.6;
+    }
+  }
+
+  &-submit {
+    border-radius: 16px;
+    padding: 18px 24px;
+    background: #006bff;
+    color: white;
+    font-family: Inter Tight;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+  }
+}
+
+.datepicker {
+  display: flex;
+  justify-content: start;
+  gap: 16px;
+}

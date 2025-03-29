@@ -1,58 +1,30 @@
-import item1 from "./item1.svg";
-import item2 from "./item2.svg";
-import item3 from "./item3.svg";
-import item4 from "./item4.svg";
-import item5 from "./item5.svg";
-import importantTag from "./importantTag.svg";
+import { observer } from "mobx-react-lite";
+import profileStore from "../../stores/ProfileStore";
+import rolesStore from "../../stores/RolesStore";
 
 type NavBarProps = {
-  variant: string
+  variant: string;
 };
 
-export default function Navbar({ variant } : NavBarProps) {
-  const profileCases = [
-    { imageId: 1, text: "Структура ВКК" },
-    { imageId: 2, text: "Организация" },
-    { imageId: 3, text: "Реестр документов ВКК" },
-    { imageId: 4, text: "Календарь ВКК" },
-    { imageId: 5, text: "Тарифы и оплата" },
-  ];
-
-  const profileIcons = [
-    { id: 1, icon: item1 },
-    { id: 2, icon: item2 },
-    { id: 3, icon: item3 },
-    { id: 4, icon: item4 },
-    { id: 5, icon: item5 },
-  ];
-
-  const workspaceCases = [
-    { imageId: 1, text: "Руководитель МО" },
-    { imageId: 1, text: "Ответственное лицо" },
-    { imageId: 1, text: "Уполномоченное лицо" },
-    { imageId: 1, text: "Председатель ВК" },
-    { imageId: 1, text: "Секретарь ВК" },
-    { imageId: 1, text: "Член ВК" },
-    { imageId: 1, text: "Администратор клиники" },
-  ];
-
-  const workspaceIcon = [{ id: 1, icon: importantTag }];
-
+function Navbar({ variant }: NavBarProps) {
   const variants = {
     profile: {
-      name: 'Личный кабинет',
-      list: profileCases,
-      icons: profileIcons,
+      name: "Личный кабинет",
+      list: profileStore.options,
+      icons: profileStore.icons,
+      isLoading: false,
     },
     workspace: {
-      name: 'Рабочее пространство',
-      list: workspaceCases,
-      icons: workspaceIcon,
+      name: "Рабочее пространство",
+      list: rolesStore.roles,
+      icons: rolesStore.icons,
+      isLoading: rolesStore.isLoading,
     },
   };
 
   const variantKey = variant as keyof typeof variants;
 
+  if (variants[variantKey].isLoading) return (<div>Waiting...</div>);
   return (
     <div className="navigation">
       <div className="navigation-container">
@@ -64,7 +36,9 @@ export default function Navbar({ variant } : NavBarProps) {
       <nav>
         {variants[variantKey].list.map((item) => {
           const { imageId, text } = item;
-          const itemIcon = variants[variantKey].icons.find((icon) => icon.id === imageId);
+          const itemIcon = variants[variantKey].icons.find(
+            (icon) => icon.id === imageId
+          );
 
           return (
             <div key={text} className="navigation-node">
@@ -79,3 +53,5 @@ export default function Navbar({ variant } : NavBarProps) {
     </div>
   );
 }
+
+export default observer(Navbar);

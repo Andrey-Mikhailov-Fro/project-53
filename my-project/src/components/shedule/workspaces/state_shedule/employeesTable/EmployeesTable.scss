@@ -1,0 +1,91 @@
+.grid-table {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns:
+    minmax(30px, 60px)
+    minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    minmax(150px, 1fr)
+    minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    minmax(40px, 100px)
+    minmax(30px, 60px)
+    minmax(30px, 60px)
+    minmax(30px, 60px);
+}
+
+.grid-header,
+.grid-row {
+  display: contents;
+}
+
+.grid-header > div {
+  box-sizing: border-box;
+  background: #f5f5f5;
+  padding: 16px;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  border: none;
+  font-family: "Inter Tight";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  color: #a3a3a3;
+  text-wrap: nowrap;
+  text-align: center;
+}
+
+.grid-header-start {
+  box-sizing: border-box;
+  border-radius: 16px 0 0 16px;
+}
+
+.grid-header-end {
+  border-radius: 0 16px 16px 0;
+}
+
+.grid-row > div {
+  box-sizing: border-box;
+  background: white;
+  padding: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #e0e0e0;
+  text-wrap: nowrap;
+  text-align: center;
+  font-family: 'Inter Tight';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+.grid-row:hover > div {
+  background: #f9f9f9;
+}
+
+.fire-employee-button {
+  border-radius: 16px;
+  padding: 10px 24px;
+  background: #e9f2ff;
+  font-family: "Inter Tight";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+  color: #222222;
+}
+
+.no-text-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
