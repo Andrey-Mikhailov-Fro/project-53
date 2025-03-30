@@ -27,3 +27,4 @@ jobs:
 
       - name: Run Tests
         run: npm vitest run
+        working-directory: ./my-project
