@@ -26,5 +26,4 @@ jobs:
         run: npx eslint
 
       - name: Run Tests
-        run: npm vitest run
-        working-directory: ./my-project
+        run: npx vitest run
