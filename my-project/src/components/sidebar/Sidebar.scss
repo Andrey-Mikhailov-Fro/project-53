@@ -33,10 +33,14 @@
     padding: 8px;
     gap: 12px;
     background: #f4f6f9;
+    transition: all;
+    transform: translateX(-20px);
 
     &-closed {
       right: -40px;
+      transition: all;
       transform: rotateY(180deg);
+      transform: translateX(20px);
     }
   }
 
@@ -118,14 +122,11 @@
       letter-spacing: 0px;
       vertical-align: middle;
     }
-
-    &-opened {
-      transform: rotateX(180deg);
-    }
   }
 
   .opened {
-    transform: rotateY(180deg);
+    transition: all;
+    transform: rotateX(180deg);
   }
 
   .open {

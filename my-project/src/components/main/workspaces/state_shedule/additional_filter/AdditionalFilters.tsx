@@ -1,4 +1,4 @@
-import './Additional_filters.scss';
+import "./Additional_filters.scss";
 
 function AdditionalFilters() {
   const additionalFilters = [
@@ -17,7 +17,9 @@ function AdditionalFilters() {
           </label>
         ))}
       </div>
-      <button className="additional-filters-clear" disabled>Удалить</button>
+      <button className="additional-filters-clear" disabled>
+        Удалить
+      </button>
     </div>
   );
 }

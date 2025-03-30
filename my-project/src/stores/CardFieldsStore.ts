@@ -9,7 +9,7 @@ export type Field = {
   tag: {
     variant: string;
     type?: string;
-    validationType?: string,
+    validationType?: string;
     options?: string[];
     prop: keyof FormData;
   };
@@ -196,18 +196,18 @@ class CardFieldsStore {
     const loadedMedical = medicalResponse.data.items;
 
     const administrative = this.fields.find(
-      (item) => item.id === "administrative-field"
+      (item) => item.id === "administrative-field",
     ) as Field;
     const medical = this.fields.find(
-      (item) => item.id === "medical-field"
+      (item) => item.id === "medical-field",
     ) as Field;
     const department = this.fields.find(
-      (item) => item.id === "department-field"
+      (item) => item.id === "department-field",
     ) as Field;
 
     runInAction(() => {
       administrative.tag.options = loadedAdministrative.map(
-        (item) => item.label
+        (item) => item.label,
       );
       medical.tag.options = loadedMedical.map((item) => item.label);
       department.tag.options = loadedDepartments.map((item) => item.label);
@@ -250,14 +250,13 @@ class CardFieldsStore {
 
   updateValue(id: string, value: string) {
     const currentValue = this.values.find(
-      (item) => item.fieldId === id
+      (item) => item.fieldId === id,
     ) as Value;
-    
 
     runInAction(() => {
-      currentValue.value = value;  
+      currentValue.value = value;
 
-      if (this.values.every((item) => item.value !== '')) {
+      if (this.values.every((item) => item.value !== "")) {
         this.isEnabled = true;
       } else {
         this.isEnabled = false;

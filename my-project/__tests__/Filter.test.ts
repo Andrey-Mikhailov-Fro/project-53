@@ -7,13 +7,13 @@ vi.mock(import("../src/stores/EmployeeStore"), async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
-  }
+  };
 });
 vi.mock(import("../src/stores/RolesStore"), async (importOriginal) => {
   const actual = await importOriginal();
   return {
     ...actual,
-  }
+  };
 });
 
 import employeeStore, { Employee } from "../src/stores/EmployeeStore";
@@ -59,7 +59,6 @@ describe("Filter Component", () => {
   ];
 
   beforeEach(() => {
-
     vi.mocked(employeeStore).employees = mockEmployees;
     vi.mocked(employeeStore).filters = { name: [], role: [] };
 
@@ -96,11 +95,15 @@ describe("Filter Component", () => {
     fireEvent.click(checkbox);
 
     expect(checkbox).toBeChecked();
-    expect(screen.getByText("Иван Иванов", { selector: 'span' })).toBeInTheDocument();
+    expect(
+      screen.getByText("Иван Иванов", { selector: "span" }),
+    ).toBeInTheDocument();
 
     fireEvent.click(checkbox);
     expect(checkbox).not.toBeChecked();
-    expect(screen.queryByText("Иван Иванов", { selector: 'span' })).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("Иван Иванов", { selector: "span" }),
+    ).not.toBeInTheDocument();
   });
 
   it("deletes selected chip", () => {

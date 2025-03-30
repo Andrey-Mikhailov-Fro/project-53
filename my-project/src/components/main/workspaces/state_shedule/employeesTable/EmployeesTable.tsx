@@ -58,7 +58,7 @@ function EmployeeGridTable() {
           return sortConfig.direction === "asc"
             ? String(a[sortConfig.key]).localeCompare(String(b[sortConfig.key]))
             : String(b[sortConfig.key]).localeCompare(
-                String(a[sortConfig.key])
+                String(a[sortConfig.key]),
               );
         }
 
@@ -162,25 +162,69 @@ function EmployeeGridTable() {
             <div className="grid-row-start no-text-cell">
               <input type="checkbox" />
             </div>
-            <div data-tooltip-id="tooltip" data-tooltip-content="Имя сотрудника">
+            <div
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Имя сотрудника"
+            >
               {employee.name}
             </div>
-            <div data-tooltip-id="tooltip" data-tooltip-content="Номер телефона сотрудника">{employee.phone}</div>
-            <div data-tooltip-id="tooltip" data-tooltip-content="Электронная почта сотрудника">{employee.email}</div>
+            <div
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Номер телефона сотрудника"
+            >
+              {employee.phone}
+            </div>
+            <div
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Электронная почта сотрудника"
+            >
+              {employee.email}
+            </div>
             <div>••••••••</div>
-            <div data-tooltip-id="tooltip" data-tooltip-content="Должность в организации">{employee.position}</div>
-            <div data-tooltip-id="tooltip" data-tooltip-content="Роль в организации">
+            <div
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Должность в организации"
+            >
+              {employee.position}
+            </div>
+            <div
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Роль в организации"
+            >
               <Chip
                 roleId={handleDetermineRole(employee.medPosition as string)}
               />
             </div>
-            <div data-tooltip-id="tooltip" data-tooltip-content={employee.status}>{employee.status}</div>
-            <div className="no-text-cell" data-tooltip-id="tooltip" data-tooltip-content={`Простая электронная подпись:${employee.sds ? 'Есть' : 'Нет'}`}>
+            <div
+              data-tooltip-id="tooltip"
+              data-tooltip-content={employee.status}
+            >
+              {employee.status}
+            </div>
+            <div
+              className="no-text-cell"
+              data-tooltip-id="tooltip"
+              data-tooltip-content={`Простая электронная подпись:${employee.sds ? "Есть" : "Нет"}`}
+            >
               <input type="checkbox" checked={employee.sds} disabled />
             </div>
-            <div data-tooltip-id="tooltip" data-tooltip-content="Дата приема на работу">{employee.hired}</div>
-            <div data-tooltip-id="tooltip" data-tooltip-content="Дата увольнения с должности">{employee.fired}</div>
-            <div className="no-text-cell" data-tooltip-id="tooltip" data-tooltip-content="Уволить сотрудника">
+            <div
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Дата приема на работу"
+            >
+              {employee.hired}
+            </div>
+            <div
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Дата увольнения с должности"
+            >
+              {employee.fired}
+            </div>
+            <div
+              className="no-text-cell"
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Уволить сотрудника"
+            >
               <button
                 className="fire-employee-button"
                 onClick={() => handleControlClick("fire", employee.id)}
@@ -189,7 +233,11 @@ function EmployeeGridTable() {
                 Уволить
               </button>
             </div>
-            <div className="no-text-cell" data-tooltip-id="tooltip" data-tooltip-content="Редактировать профиль сотрудника">
+            <div
+              className="no-text-cell"
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Редактировать профиль сотрудника"
+            >
               <button
                 onClick={() => {
                   employeeStore.setActiveEmployee(employee.id);
@@ -199,7 +247,11 @@ function EmployeeGridTable() {
                 <img src={edit} />
               </button>
             </div>
-            <div className="no-text-cell" data-tooltip-id="tooltip" data-tooltip-content="Заблокировать профиль сотрудника">
+            <div
+              className="no-text-cell"
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Заблокировать профиль сотрудника"
+            >
               <button
                 onClick={() =>
                   employee.locked
@@ -210,7 +262,11 @@ function EmployeeGridTable() {
                 <img src={employee.locked ? locked : unlocked} />
               </button>
             </div>
-            <div className="no-text-cell" data-tooltip-id="tooltip" data-tooltip-content="Удалить профиль сотрудника">
+            <div
+              className="no-text-cell"
+              data-tooltip-id="tooltip"
+              data-tooltip-content="Удалить профиль сотрудника"
+            >
               <button onClick={() => handleControlClick("delete", employee.id)}>
                 <img src={deleteEmployee} />
               </button>

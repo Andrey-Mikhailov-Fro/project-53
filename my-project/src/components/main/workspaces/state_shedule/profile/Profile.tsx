@@ -51,7 +51,7 @@ function Profile({ mode }: ProfileProps) {
       if (value.prop === "hired") {
         const formattedDate = format(
           new Date(value.value as string),
-          "dd.MM.yyyy"
+          "dd.MM.yyyy",
         );
         required.hired = formattedDate;
         return;
@@ -97,7 +97,7 @@ function Profile({ mode }: ProfileProps) {
         const updatedEmployee = reduceFormData();
         EmployeeStore.updateEmployee(
           EmployeeStore.activeEmployee.id as number,
-          updatedEmployee
+          updatedEmployee,
         );
         SheduleWorkspaceStore.switchMode("default");
       },

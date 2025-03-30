@@ -134,7 +134,7 @@ class EmployeeStore {
 
   setActiveEmployee = (id: number) => {
     this.activeEmployee = this.employees.find(
-      (employee) => employee.id === id
+      (employee) => employee.id === id,
     ) as Employee;
   };
 
@@ -144,7 +144,7 @@ class EmployeeStore {
 
   updateEmployee = (id: number, update: Partial<Employee>) => {
     this.employees = this.employees.map((employee) =>
-      employee.id === id ? { ...employee, ...update } : employee
+      employee.id === id ? { ...employee, ...update } : employee,
     );
   };
 
@@ -192,13 +192,13 @@ class EmployeeStore {
 
     if (!isNoNameFilters) {
       filteredList = filteredList.filter((employee) =>
-        this.filters.name.includes(employee.id)
+        this.filters.name.includes(employee.id),
       );
     }
 
     if (!isNoRoleFilters) {
       filteredList = filteredList.filter((employee) =>
-        this.filters.role.includes(employee.id)
+        this.filters.role.includes(employee.id),
       );
     }
 

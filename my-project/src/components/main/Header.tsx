@@ -4,21 +4,27 @@ import { useState } from "react";
 import { observer } from "mobx-react-lite";
 
 function Header() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   const departments = CardFieldsStore.fields.find(
-    (item) => item.id === "department-field"
+    (item) => item.id === "department-field",
   )?.tag.options as string[];
 
-  if (CardFieldsStore.isLoading) return (<div>Waiting...</div>);
+  if (CardFieldsStore.isLoading) return <div>Waiting...</div>;
   return (
     <div className="department">
-      <select className="department-select" value={value} onChange={(e) => setValue(e.target.value)}>
-        <option className="department-select-option" value=""disabled hidden>
+      <select
+        className="department-select"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      >
+        <option className="department-select-option" value="" disabled hidden>
           Выберите подразделение
         </option>
         {departments.map((department, index) => (
-          <option key={department} value={index + 1}>{department}</option>
+          <option key={department} value={index + 1}>
+            {department}
+          </option>
         ))}
       </select>
       <div className="department-actions">

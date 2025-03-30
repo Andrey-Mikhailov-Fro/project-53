@@ -27,26 +27,51 @@ function Navbar({ variant }: NavBarProps) {
 
   const variantKey = variant as keyof typeof variants;
 
-  if (variants[variantKey].isLoading) return (<div>Waiting...</div>);
+  if (variants[variantKey].isLoading) return <div>Waiting...</div>;
   return (
     <div className="navigation">
       <div className="navigation-container">
         <span className="navigation-tag">{variants[variantKey].name}</span>
-        <button className={ show ? "navigation-dropdown" : "navigation-dropdown"} onClick={() => setShow(!show)}>
-          <img className={show ? "navigation-opened" : ""} src="/dropdown.svg" alt="dropdown" />
+        <button
+          className={
+            show ? "navigation-dropdown opened" : "navigation-dropdown"
+          }
+          onClick={() => setShow(!show)}
+        >
+          <img
+            className={show ? "opened" : ""}
+            src="/dropdown.svg"
+            alt="dropdown"
+          />
         </button>
       </div>
       <nav className={show ? "open" : "close"}>
         {variants[variantKey].list.map((item) => {
           const { imageId, text } = item;
           const itemIcon = variants[variantKey].icons.find(
-            (icon) => icon.id === imageId
+            (icon) => icon.id === imageId,
           );
 
           return (
-            <div key={text} className={show ? "navigation-node open" : "navigation-node close"}>
-              <img className={show ? "" : "close"} src={itemIcon?.icon} alt="" />
-              <a href="" className={show ? "navigation-node-text open" : "navigation-node-text close"}>
+            <div
+              key={text}
+              className={
+                show ? "navigation-node open" : "navigation-node close"
+              }
+            >
+              <img
+                className={show ? "" : "close"}
+                src={itemIcon?.icon}
+                alt=""
+              />
+              <a
+                href=""
+                className={
+                  show
+                    ? "navigation-node-text open"
+                    : "navigation-node-text close"
+                }
+              >
                 {text}
               </a>
             </div>

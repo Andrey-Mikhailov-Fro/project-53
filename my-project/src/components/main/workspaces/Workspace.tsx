@@ -17,7 +17,13 @@ function Workspace() {
     <div className="workspace">
       <div className="workspace-tabs">
         {tabs.map((tab, index) => (
-          <button key={tab} className={ active === index ? "workspace-tab active-tab" : "workspace-tab"} onClick={() => setActive(index)}>
+          <button
+            key={tab}
+            className={
+              active === index ? "workspace-tab active-tab" : "workspace-tab"
+            }
+            onClick={() => setActive(index)}
+          >
             {tab}
           </button>
         ))}
