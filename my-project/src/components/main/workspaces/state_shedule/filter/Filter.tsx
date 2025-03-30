@@ -3,6 +3,7 @@ import employeeStore from "../../../../../stores/EmployeeStore";
 import rolesStore from "../../../../../stores/RolesStore";
 import FilterChip from "./FilterChip";
 import { observer } from "mobx-react-lite";
+import "./Filter.scss";
 
 type FilterProps = {
   type: string;
@@ -10,9 +11,21 @@ type FilterProps = {
 
 function Filter({ type }: FilterProps) {
   const [isShow, setIsShow] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<number[]>([]);
 
+  const getInitialFilters = () => {
+    const loaded = localStorage.getItem("filters");
 
+    if (loaded) {
+      const parsed = JSON.parse(loaded);
+      const initial: number[] = parsed[type];
+      return initial;
+    }
+
+    return [] as number[];
+  };
+
+  const [selectedOptions, setSelectedOptions] =
+    useState<number[]>(getInitialFilters());
 
   const handleShow = () => {
     setIsShow(!isShow);
@@ -30,14 +43,14 @@ function Filter({ type }: FilterProps) {
 
   const filterTypes = {
     name: {
-      placeholder: 'Выберите сотрудника(ов)',
+      placeholder: "Выберите сотрудника(ов)",
       list: employeeStore.employees.map((employee) => ({
         id: employee.id,
         label: employee.name,
       })),
     },
     role: {
-      placeholder: 'Выберите роль(ли)',
+      placeholder: "Выберите роль(ли)",
       list: rolesStore.roles.map((role) => ({ id: role.id, label: role.text })),
     },
   };
@@ -51,11 +64,19 @@ function Filter({ type }: FilterProps) {
   return (
     <div className="filter">
       <div className="filter-input">
-        {optionsList
-          .filter((option) => selectedOptions.includes(option.id))
-          .map((option) => (
-            <FilterChip option={option} deleteChip={deleteFilter} />
-          )) ?? <span>{filterTypes[typeKey].placeholder}</span>}
+        {selectedOptions.length !== 0 ? (
+          optionsList
+            .filter((option) => selectedOptions.includes(option.id))
+            .map((option) => (
+              <FilterChip
+                key={option.id}
+                option={option}
+                deleteChip={deleteFilter}
+              />
+            ))
+        ) : (
+          <span>{filterTypes[typeKey].placeholder}</span>
+        )}
       </div>
       {selectedOptions.length >= 4 ? "..." : null}
       {selectedOptions.length >= 4 ? (

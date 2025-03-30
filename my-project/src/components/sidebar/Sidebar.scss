@@ -4,9 +4,23 @@
   width: 100%;
   max-width: 340px;
   height: 100%;
-  border-right: 1px solid #d4d9e4;
-  padding: 40px;
   background: #f4f6f9;
+  animation: sidebarExpand 0.3s ease-in-out forwards;
+
+  &-container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 340px;
+    height: 100%;
+    border-right: 1px solid #d4d9e4;
+    padding: 40px;
+    background: #f4f6f9;
+
+    &-closed {
+      pointer-events: none;
+      animation: fadeOut 0.2s ease-in-out forwards;
+    }
+  }
 
   &-dropdown {
     position: absolute;
@@ -15,10 +29,19 @@
     width: 40px;
     height: 40px;
     border-radius: 8px;
-    border: 1px solid #D4D9E4;
+    border: 1px solid #d4d9e4;
     padding: 8px;
     gap: 12px;
-    background: #F4F6F9;
+    background: #f4f6f9;
+
+    &-closed {
+      right: -40px;
+      transform: rotateY(180deg);
+    }
+  }
+
+  &-closed {
+    animation: sidebarCollapse 0.3s ease-in-out 0.3s forwards;
   }
 }
 
@@ -49,8 +72,6 @@
 }
 
 .navigation {
-  width: 260;
-  height: 56;
   padding: 16px;
   gap: 12px;
 
@@ -77,8 +98,6 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    width: 260;
-    height: 48;
     gap: 12px;
     border-radius: 16px;
     padding-top: 12px;
@@ -99,10 +118,91 @@
       letter-spacing: 0px;
       vertical-align: middle;
     }
+
+    &-opened {
+      transform: rotateX(180deg);
+    }
+  }
+
+  .opened {
+    transform: rotateY(180deg);
+  }
+
+  .open {
+    animation:
+      expand 0.4s ease-in-out,
+      fadeIn 0.3s ease-in-out 0.1s;
+  }
+
+  .close {
+    animation:
+      fadeOut 0.2s ease-in forwards,
+      collapse 0.2s ease-in-out 0.2s forwards;
+    pointer-events: none;
+    z-index: -20;
   }
 }
 
 .about {
+  position: fixed;
+  bottom: 10%;
   padding-left: 16px;
-  margin-top: 160px;
+}
+
+@keyframes expand {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: max-content;
+    opacity: 1;
+  }
+}
+
+@keyframes collapse {
+  from {
+    height: fit-content;
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sidebarExpand {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes sidebarCollapse {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
 }

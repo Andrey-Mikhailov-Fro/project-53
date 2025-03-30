@@ -9,6 +9,7 @@ export type Field = {
   tag: {
     variant: string;
     type?: string;
+    validationType?: string,
     options?: string[];
     prop: keyof FormData;
   };
@@ -57,6 +58,7 @@ const initialFieldsData: Field[] = [
     tag: {
       variant: "input",
       type: "text",
+      validationType: "surname",
       prop: "surname",
     },
     placeholder: "Введите Фамилию",
@@ -67,6 +69,7 @@ const initialFieldsData: Field[] = [
     tag: {
       variant: "input",
       type: "text",
+      validationType: "name",
       prop: "name",
     },
     placeholder: "Введите Имя",
@@ -77,6 +80,7 @@ const initialFieldsData: Field[] = [
     tag: {
       variant: "input",
       type: "text",
+      validationType: "patronymic",
       prop: "patronymic",
     },
     placeholder: "Введите Отчество",
@@ -117,6 +121,7 @@ const initialFieldsData: Field[] = [
     tag: {
       variant: "input",
       type: "text",
+      validationType: "phone",
       prop: "phone",
     },
     placeholder: "+7 (***) ****-**-**",
@@ -127,6 +132,7 @@ const initialFieldsData: Field[] = [
     tag: {
       variant: "input",
       type: "email",
+      validationType: "email",
       prop: "email",
     },
     placeholder: "Введите ваш E-mail",
@@ -163,6 +169,7 @@ class CardFieldsStore {
   fields = initialFieldsData;
   values: Value[] = initialValues;
   isLoading = false;
+  isEnabled = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -232,11 +239,13 @@ class CardFieldsStore {
 
     runInAction(() => {
       this.values = newValues;
+      this.isEnabled = true;
     });
   }
 
   setDefault() {
     this.values = initialValues;
+    this.isEnabled = false;
   }
 
   updateValue(id: string, value: string) {
@@ -247,6 +256,12 @@ class CardFieldsStore {
 
     runInAction(() => {
       currentValue.value = value;  
+
+      if (this.values.every((item) => item.value !== '')) {
+        this.isEnabled = true;
+      } else {
+        this.isEnabled = false;
+      }
     });
   }
 }

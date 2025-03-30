@@ -1,12 +1,15 @@
 import { observer } from "mobx-react-lite";
 import profileStore from "../../stores/ProfileStore";
 import rolesStore from "../../stores/RolesStore";
+import { useState } from "react";
 
 type NavBarProps = {
   variant: string;
 };
 
 function Navbar({ variant }: NavBarProps) {
+  const [show, setShow] = useState(false);
+
   const variants = {
     profile: {
       name: "Личный кабинет",
@@ -29,11 +32,11 @@ function Navbar({ variant }: NavBarProps) {
     <div className="navigation">
       <div className="navigation-container">
         <span className="navigation-tag">{variants[variantKey].name}</span>
-        <button className="navigation-dropdown">
-          <img src="/dropdown.svg" alt="dropdown" />
+        <button className={ show ? "navigation-dropdown" : "navigation-dropdown"} onClick={() => setShow(!show)}>
+          <img className={show ? "navigation-opened" : ""} src="/dropdown.svg" alt="dropdown" />
         </button>
       </div>
-      <nav>
+      <nav className={show ? "open" : "close"}>
         {variants[variantKey].list.map((item) => {
           const { imageId, text } = item;
           const itemIcon = variants[variantKey].icons.find(
@@ -41,9 +44,9 @@ function Navbar({ variant }: NavBarProps) {
           );
 
           return (
-            <div key={text} className="navigation-node">
-              <img src={itemIcon?.icon} alt="" />
-              <a href="" className="navigation-node-text">
+            <div key={text} className={show ? "navigation-node open" : "navigation-node close"}>
+              <img className={show ? "" : "close"} src={itemIcon?.icon} alt="" />
+              <a href="" className={show ? "navigation-node-text open" : "navigation-node-text close"}>
                 {text}
               </a>
             </div>

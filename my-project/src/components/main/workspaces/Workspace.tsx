@@ -1,6 +1,10 @@
-import StateShedule from "./workspaces/state_shedule/StateShedule";
+import { useState } from "react";
+import StateShedule from "./state_shedule/StateShedule";
+import "./Workspace.scss";
 
 function Workspace() {
+  const [active, setActive] = useState(2);
+
   const tabs = [
     "Карточка организации",
     "Обособленные подразделения",
@@ -12,8 +16,10 @@ function Workspace() {
   return (
     <div className="workspace">
       <div className="workspace-tabs">
-        {tabs.map((tab) => (
-          <button key={tab} className="workspace-tab" >{tab}</button>
+        {tabs.map((tab, index) => (
+          <button key={tab} className={ active === index ? "workspace-tab active-tab" : "workspace-tab"} onClick={() => setActive(index)}>
+            {tab}
+          </button>
         ))}
       </div>
       <StateShedule />

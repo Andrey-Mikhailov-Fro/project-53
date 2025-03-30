@@ -80,6 +80,7 @@ class EmployeeStore {
 
   constructor() {
     makeAutoObservable(this);
+    this.loadFilters();
   }
 
   getEmployees = async () => {
@@ -95,10 +96,11 @@ class EmployeeStore {
       try {
         return format(fromUnixTime(dateString), "dd.MM.yyyy", { locale: ru });
       } catch {
+        console.log("error");
         return dateString.toString();
       }
     };
-    
+
     const normalizedData = loadedData.map((item) => {
       const normalizedItem: Employee = {
         id: item.id,
@@ -128,38 +130,55 @@ class EmployeeStore {
   addEmployee = (employee: Employee) => {
     const newList = [...this.employees, employee];
     this.employees = newList;
-  }
+  };
 
   setActiveEmployee = (id: number) => {
-    this.activeEmployee = this.employees.find((employee) => employee.id === id) as Employee;
-  }
+    this.activeEmployee = this.employees.find(
+      (employee) => employee.id === id
+    ) as Employee;
+  };
 
   deleteEmployeeCard = (id: number) => {
     this.employees = this.employees.filter((employee) => employee.id !== id);
-  }
+  };
 
   updateEmployee = (id: number, update: Partial<Employee>) => {
-    this.employees = this.employees.map(employee => 
-      employee.id === id ? {...employee, ...update} : employee
+    this.employees = this.employees.map((employee) =>
+      employee.id === id ? { ...employee, ...update } : employee
     );
   };
 
   blockEmployee = (id: number) => {
     this.updateEmployee(id, { locked: true });
-  }
+  };
 
   unblockEmployee = (id: number) => {
     this.updateEmployee(id, { locked: false });
-  }
+  };
 
   fireEmployee = (id: number) => {
-    this.updateEmployee(id, { fired: format(Date.now(), 'dd.MM.yyyy'), status: 'Уволен' });
-  }
+    this.updateEmployee(id, {
+      fired: format(Date.now(), "dd.MM.yyyy"),
+      status: "Уволен",
+    });
+  };
 
   addFilter = (key: keyof Filters, ids: number[]) => {
     runInAction(() => {
       this.filters[key] = [...ids];
-    })
+      this.saveFilters();
+    });
+  };
+
+  private saveFilters = () => {
+    localStorage.setItem("filters", JSON.stringify(this.filters));
+  };
+
+  private loadFilters = () => {
+    const saved = localStorage.getItem("filters");
+    if (saved) {
+      this.filters = JSON.parse(saved);
+    }
   };
 
   switchAdditionalFilter = (key: keyof typeof this.additionalFilters) => {
@@ -172,11 +191,15 @@ class EmployeeStore {
     let filteredList = [...this.employees];
 
     if (!isNoNameFilters) {
-      filteredList = filteredList.filter((employee) => this.filters.name.includes(employee.id));
+      filteredList = filteredList.filter((employee) =>
+        this.filters.name.includes(employee.id)
+      );
     }
 
     if (!isNoRoleFilters) {
-      filteredList = filteredList.filter((employee) => this.filters.role.includes(employee.id));
+      filteredList = filteredList.filter((employee) =>
+        this.filters.role.includes(employee.id)
+      );
     }
 
     if (this.additionalFilters.locked) {

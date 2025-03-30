@@ -58,63 +58,8 @@
   }
 }
 
-.workspace {
-  box-sizing: border-box;
-  width: 100%;
-  height: fit-content;
-  padding: 62px 40px 125px 40px;
-
-  &-tabs {
-    box-sizing: border-box;
-    width: 967px;
-    height: 52px;
-    border-radius: 12px;
-    padding: 4px;
-    margin-bottom: 48px;
-    background: #f4f6f9;
-  }
-
-  &-tab {
-    box-sizing: border-box;
-    width: fit-content;
-    height: 44px;
-    padding: 12px 16px 12px 16px;
-    gap: 10px;
-    border-radius: 8px;
-    gap: 10px;
-    font-family: 'Inter Tight';
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-align: center;
-    vertical-align: middle;
-    color: #A3A3A3;
-  }
-}
-
-.active-tab {
-  background: #FFFFFF;
-  color: black;
-}
-
-.chip {
-  box-sizing: border-box;
-  width: 140px;
-  height: 32px;
-  border-radius: 8px;
-  font-family: "Inter Tight";
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0px;
-  text-align: center;
-  vertical-align: middle;
-  text-align: center;
-  padding: 6px 12px 6px 12px;
-}
-
 button {
   background: none;
   border: none;
+  cursor: pointer;
 }

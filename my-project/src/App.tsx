@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import './App.css'
-import Shedule from './components/shedule/Main'
+import Shedule from './components/main/Main'
 import Sidebar from './components/sidebar/Sidebar'
 
 function App() {

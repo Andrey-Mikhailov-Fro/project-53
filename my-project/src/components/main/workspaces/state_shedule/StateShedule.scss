@@ -1,0 +1,41 @@
+.shedule {
+  &-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  &-name {
+    font-family: "Inter Tight";
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: 0px;
+    margin: 0;
+    vertical-align: middle;
+  }
+}
+
+.add-employee {
+  width: 188;
+  height: 56;
+  padding: 18px 24px;
+  border-radius: 16px;
+  background: #006bff;
+  color: white;
+  font-family: "Inter Tight";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0px;
+  vertical-align: middle;
+}
+
+.filters {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}

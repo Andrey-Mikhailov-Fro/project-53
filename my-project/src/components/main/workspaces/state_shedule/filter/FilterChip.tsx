@@ -11,7 +11,7 @@ type FilterChipProps = {
 function FilterChip({ option, deleteChip } : FilterChipProps) {
     return (
         <div className="filter-chip">
-            <span>{option.label}</span>
+            <span className="filter-chip-text">{option.label}</span>
             <button className="filter-chip-close" onClick={() => deleteChip(option.id)}><img src="/close.svg" /></button>
         </div>
     );

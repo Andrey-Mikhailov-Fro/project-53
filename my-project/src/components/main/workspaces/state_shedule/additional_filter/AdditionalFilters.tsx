@@ -1,3 +1,5 @@
+import './Additional_filters.scss';
+
 function AdditionalFilters() {
   const additionalFilters = [
     { id: 1, label: "Выбрать всех" },

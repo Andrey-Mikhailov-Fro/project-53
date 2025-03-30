@@ -14,14 +14,14 @@
   }
 
   &-current {
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-weight: 500;
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.1px;
     text-align: center;
     vertical-align: middle;
-    color: #006BFF;
+    color: #006bff;
   }
 
   &-table {
@@ -48,12 +48,17 @@
   }
 
   &-input {
-    width: 60%;
-    max-width: 496px;
-    border: none;
+    width: 100%;
     border-radius: 16px;
     padding: 16px;
     background: #f4f6f9;
+
+    &-container {
+      width: 60%;
+      max-width: 496px;
+      border: none;
+      position: relative;
+    }
   }
 
   &-select {
@@ -84,6 +89,21 @@
     line-height: 20px;
     letter-spacing: 0px;
     vertical-align: middle;
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+}
+
+.error {
+  border-color: #ff4d4f;
+
+  &-message {
+    color: #ff4d4f;
+    font-size: 0.75rem;
+    position: absolute;
+    right: -1.25rem;
   }
 }
 

@@ -6,9 +6,13 @@ type ChipProps = {
 };
 
 function Chip({ roleId }: ChipProps) {
-  const currentRole = rolesStore.roles.find((role) => role.id === roleId);
+  const currentRoleText = rolesStore.roles.find((role) => role.id === roleId)?.text ?? 'Нет';
 
   const styleVariants = {
+    0: {
+      background: "#e8ecf6",
+      textColor: "#d4d9e4",
+    },
     1: {
       background: "#ffd5fb",
       textColor: "#9600ae",
@@ -31,13 +35,13 @@ function Chip({ roleId }: ChipProps) {
     },
   };
 
-  const variant = roleId as keyof typeof styleVariants;
+  const variant = (roleId ?? '0') as keyof typeof styleVariants;
 
   const { background, textColor } = styleVariants[variant];
 
   return (
     <span style={{ background: background, color: textColor }} className="chip">
-      {currentRole?.text}
+      {currentRoleText}
     </span>
   );
 }

@@ -1,19 +1,32 @@
 import { format } from "date-fns";
 import CardFieldsStore, {
   FieldDataEmployee,
-} from "../../stores/CardFieldsStore";
-import EmployeeStore, { Employee } from "../../stores/EmployeeStore";
-import SheduleWorkspaceStore from "../../stores/SheduleWorkspaceStore";
+} from "../../../../../stores/CardFieldsStore";
+import EmployeeStore, { Employee } from "../../../../../stores/EmployeeStore";
+import SheduleWorkspaceStore from "../../../../../stores/SheduleWorkspaceStore";
 import "./Profile.scss";
 import ProfileField from "./ProfileField";
+import { observer } from "mobx-react-lite";
 import React from "react";
 
 type ProfileProps = {
   mode: string;
 };
 
+const SubmitButton = observer(() => {
+  return (
+    <button
+      type="submit"
+      className="profile-submit"
+      disabled={!CardFieldsStore.isEnabled}
+    >
+      Сохранить изменения
+    </button>
+  );
+});
+
 function Profile({ mode }: ProfileProps) {
-  if (mode === 'edit') {
+  if (mode === "edit") {
     CardFieldsStore.setValues(EmployeeStore.activeEmployee as Employee);
   }
 
@@ -43,6 +56,7 @@ function Profile({ mode }: ProfileProps) {
         required.hired = formattedDate;
         return;
       }
+
       required[value.prop] = value.value as string;
     });
 
@@ -77,14 +91,15 @@ function Profile({ mode }: ProfileProps) {
     edit: {
       breadcrump: "Редактирование карточки сотрудника",
       title: EmployeeStore.activeEmployee.name,
-      baseFieldsDataSettings: () => CardFieldsStore.setValues(EmployeeStore.activeEmployee as Employee),
+      baseFieldsDataSettings: () =>
+        CardFieldsStore.setValues(EmployeeStore.activeEmployee as Employee),
       onSubmit: () => {
         const updatedEmployee = reduceFormData();
         EmployeeStore.updateEmployee(
           EmployeeStore.activeEmployee.id as number,
           updatedEmployee
         );
-        SheduleWorkspaceStore.switchMode('default');
+        SheduleWorkspaceStore.switchMode("default");
       },
     },
   };
@@ -99,7 +114,7 @@ function Profile({ mode }: ProfileProps) {
         className="profile-exit"
         onClick={() => SheduleWorkspaceStore.switchMode("default")}
       >
-        Персоналии
+        ← Персоналии
       </button>
       <span className="profile-current">/ {variants[viewMode].breadcrump}</span>
       <h2>{variants[viewMode].title}</h2>
@@ -117,9 +132,7 @@ function Profile({ mode }: ProfileProps) {
             field={field}
           />
         ))}
-        <button type="submit" className="profile-submit">
-          Сохранить изменения
-        </button>
+        <SubmitButton />
       </form>
     </div>
   );
