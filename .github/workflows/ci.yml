@@ -11,11 +11,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: latest
-      - name: Enter working directory
-        run: cd my-project
 
       - name: Install dependencies
-        run: npm ci
+        run: cd my-project && npm Install
 
       - name: Run ESLint
         run: npx eslint
