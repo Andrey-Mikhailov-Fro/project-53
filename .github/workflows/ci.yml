@@ -13,7 +13,7 @@ jobs:
           node-version: latest
 
       - name: Install dependencies
-        run: cd my-project && npm Install
+        run: cd my-project && npm install
 
       - name: Run ESLint
         run: npx eslint
