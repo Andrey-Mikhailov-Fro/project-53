@@ -33,9 +33,7 @@ function Navbar({ variant }: NavBarProps) {
       <div className="navigation-container">
         <span className="navigation-tag">{variants[variantKey].name}</span>
         <button
-          className={
-            show ? "navigation-dropdown" : "navigation-dropdown"
-          }
+          className="navigation-dropdown"
           onClick={() => setShow(!show)}
         >
           <img
@@ -49,7 +47,7 @@ function Navbar({ variant }: NavBarProps) {
         {variants[variantKey].list.map((item) => {
           const { imageId, text } = item;
           const itemIcon = variants[variantKey].icons.find(
-            (icon) => icon.id === imageId,
+            (icon) => icon.id === imageId
           );
 
           return (
