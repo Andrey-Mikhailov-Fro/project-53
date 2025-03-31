@@ -34,7 +34,7 @@ function Navbar({ variant }: NavBarProps) {
         <span className="navigation-tag">{variants[variantKey].name}</span>
         <button
           className={
-            show ? "navigation-dropdown opened" : "navigation-dropdown"
+            show ? "navigation-dropdown" : "navigation-dropdown"
           }
           onClick={() => setShow(!show)}
         >
